@@ -1,1 +1,2 @@
-# https://tiyk-a.github.io/
+# わいのGithub Pagesリポジトリです
+## https://tiyk-a.github.io/
