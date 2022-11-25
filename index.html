@@ -45,13 +45,18 @@
 
         var arr0 = tar.replaceAll("　", " ").split(" ");
         // 空文字を削除する
-        var arr = arr0.filter(function(s){return s !== '';});
+        var arr1 = arr0.filter(function(s){return s !== '';});
 
-        if (arr.length === 0) {
+        if (arr1.length === 0) {
             window.alert("テキストを入力してください！");
             return;
         }
         var res = "";
+
+        // 重複する文言は削除する
+        var arr = arr1.filter((element, index) => {
+            return arr1.indexOf(element) === index;
+        });
 
         for (var i=0; i<arr.length; i++) {
             if (arr[i] !== undefined || arr[i] !== "" || arr[i] !== " ") {
@@ -122,6 +127,11 @@
         });
     });
     });
+
+    // フォームをクリアします
+    function clearForm() {
+        document.tag_form.reset();
+    }
 </script>
 <div class="container">
     <div class="column is-half is-vcentered">
@@ -131,10 +141,15 @@
         </div>
         <br />
         <p>①↓ハッシュタグにしたい文字を入れてね！</p>
-        <textarea id="tar" class="textarea" rows="10" placeholder="例）お気に入り　ootd　カフェ"></textarea>
+        <form name="tag_form">
+            <textarea id="tar" class="textarea" rows="10" placeholder="例）お気に入り　ootd　カフェ"></textarea>
+        </form>
         <br />
         <button class="js-modal-trigger button is-primary is-outlined" data-target="modal-js-example">
             ②ハッシュタグにしてコピー
+        </button>
+        <button class="button is-danger is-outlined" id="clear" onclick="clearForm()">
+            クリア
         </button>
         <div>
             →「#お気に入り #ootd #カフェ」がクリップボードにコピーされます
