@@ -43,7 +43,9 @@
             return;
         }
 
-        var arr0 = tar.replaceAll("　", " ").split(" ");
+        // 改行を半角スペースに置き換える
+        tar1 = tar.replaceAll(/\r\n|\r|\n/g, " ");
+        var arr0 = tar1.replaceAll("　", " ").split(" ");
         // 空文字を削除する
         var arr1 = arr0.filter(function(s){return s !== '';});
 
