@@ -44,8 +44,13 @@
         }
 
         // 改行を半角スペースに置き換える
-        tar1 = tar.replaceAll(/\r\n|\r|\n/g, " ");
-        var arr0 = tar1.replaceAll("　", " ").split(" ");
+        var tar1 = tar.replaceAll(/\r\n|\r|\n/g, " ");
+        // 文字列内に全角ハッシュタグが入る場合、半角スペースに置き換える
+        var tar2 = tar1.replaceAll("＃", " ");
+        // 文字列内に半角ハッシュタグが入る場合、半角スペースに置き換える
+        var tar3 = tar2.replaceAll("#", " ");
+        // 全角スペースを半角スペースに置き換える
+        var arr0 = tar3.replaceAll("　", " ").split(" ");
         // 空文字を削除する
         var arr1 = arr0.filter(function(s){return s !== '';});
 
